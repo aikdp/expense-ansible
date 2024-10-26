@@ -29,7 +29,6 @@
         login_password: "{{ root_pass }}"
         login_host: "{{ hosted_zone }}"
       ignore_errors: true
-      ignore_unreachable: true 
       register: mysql_info
 
     - name: print mysql info
