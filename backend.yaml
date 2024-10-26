@@ -4,7 +4,7 @@
   become: yes
   vars:
     mysql_root_password: ExpenseApp@1
-    # login_host: mysql.telugudevops.online
+    login_host: mysql.telugudevops.online
   tasks:
     - name: ansible to install PyMySQL	#to connect mysql DB, need PyMySQL dependency
       ansible.builtin.pip:
@@ -72,6 +72,7 @@
       community.mysql.mysql_db:
         login_user: root
         login_password: "{{ mysql_root_password }}"
+        login_host: "{{ login_host }}"
         name: all
         state: import
         target: /app/schema/backend.sql
