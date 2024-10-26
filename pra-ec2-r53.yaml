@@ -41,6 +41,6 @@
         ttl: 1
         value: "{{ item.instances.private_ip_address}}"
         wait: true
-      overwrite: true
+        overwrite: true
 
 
