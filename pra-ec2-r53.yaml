@@ -2,7 +2,7 @@
 
 - name: Create ec2 instances and r53 reocrds
   hosts: local
-  connection: local
+  connection: localhost
   vars:
     subnet_id: "subnet-0e2f888f786957beb"
     sg_group_id: "sg-09805cbd3e2c45d5b"
