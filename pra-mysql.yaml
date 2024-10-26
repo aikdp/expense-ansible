@@ -5,6 +5,7 @@
   become: yes
   vars:
     root_pass: ExpenseApp@1
+    zone_name: mysql.telugudevops.online
   tasks:
     - name: install mysql sever
       ansible.builtin.package:
@@ -20,6 +21,7 @@
       community.mysql.mysql_info:
         login_user: root
         login_password: "{{ root_pass }}"
+        login_host: "{{ zone_name }}"
         ignore_errors: true
         register: mysql_info
 
