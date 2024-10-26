@@ -1,0 +1,17 @@
+#Creating BACKEND server using ANsible
+
+- name: Craeting backend/web server
+  hosts: backend
+  become: yes
+  tasks:
+    - name: Install nodejs package
+      ansible.builtin.command: dnf module disable nodejs -y
+
+    - name: Install nodejs package
+      ansible.builtin.command: dnf module enable nodejs:20 -y
+    - name: Install nodejs package
+      ansible.builtin.command: dnf install nodejs -y
+
+    
+    
+
