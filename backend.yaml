@@ -20,11 +20,11 @@
       ansible.builtin.command: dnf module disable nodejs -y
 
     - name: enable nodejs 20
-      ansible.built.command: dnf module enable nodejs:20 -y
+      ansible.builtin.command: dnf module enable nodejs:20 -y
 
     - name: innstall nodejs
       ansible.builtin.package:
-        name: {{ item }}
+        name: "{{ item }}"
         state: present
       loop:
       - nodejs

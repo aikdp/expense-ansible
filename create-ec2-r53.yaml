@@ -1,4 +1,4 @@
-#CReating ec2-user in aws
+#Creating ec2-user in aws
 # Question: We need to create instances with below type of records:
 # mysql.telugudevops.online	--->private ip
 # backend.telugudevops.onlin  --->private ip
@@ -21,6 +21,7 @@
   tasks:
     # - name: install boto3 and botocore
     #   ansible.builtin.pip:
+    #   name:
     #   - boto3
     #   - botocore
     #   executable: pip3.9
