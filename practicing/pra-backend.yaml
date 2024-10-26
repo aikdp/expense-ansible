@@ -29,11 +29,11 @@
     - name: Download file 
       ansible.builtin.get_url:
         url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
-        dest: tmp/backend.zip
+        dest: /tmp/backend.zip
 
     - name: Unarchive a file
       ansible.builtin.unarchive:
-        src: tmp/backend.zip
+        src: /tmp/backend.zip
         dest: /app
 
     - name: install npm dependecies
