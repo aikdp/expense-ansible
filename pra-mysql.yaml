@@ -27,7 +27,7 @@
 
     - name: print mysql_info
       ansible.builtin.debug:
-        msg: print the output is {{ mysql_info }}
+        msg: "print the output is {{ mysql_info }}"
 
 
     - name: set root pasword to MySQL 
