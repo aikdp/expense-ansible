@@ -30,7 +30,7 @@
       - mysql
     
     - name: craete user expense
-      anisble.builtin.user:
+      ansible.builtin.user:
         name: expense
 
     - name: Create app directory
