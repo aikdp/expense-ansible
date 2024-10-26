@@ -4,17 +4,16 @@
   become: yes
   vars:
     mysql_root_password: ExpenseApp@1
-    login_host: mysql.telugudevops.online
+    # login_host: mysql.telugudevops.online
   tasks:
-
     - name: ansible to install PyMySQL	#to connect mysql DB, need PyMySQL dependency
       ansible.builtin.pip:
-      name: 
-      - PyMySQL
-      - cryptography
-      - boto3
-      - botocore
-      executable: pip3.9
+        name: 
+        - PyMySQL
+        - cryptography
+        - boto3
+        - botocore
+        executable: pip3.9
 
     - name: disable default nodejs
       ansible.builtin.command: dnf module disable nodejs -y
