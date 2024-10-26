@@ -32,11 +32,23 @@
       ansible.builtin.debug:
         msg: print output of instances is {{ ec2_instances }}
 
+    # - name: Create r53 reocrds
+    #   amazon.aws.route53:
+    #     state: present
+    #     zone: "{{ zone_name }}"
+    #     record: "{{ item.item }}.{{ zone_name }}"
+    #     type: A
+    #     ttl: 1
+    #     value: "{{ item.instances[0].private_ip_address}}"
+    #     wait: true
+    #     overwrite: true
+    #   loop: "{{ ec2_instances.results}}"
+
     - name: Create r53 reocrds
       amazon.aws.route53:
         state: present
         zone: "{{ zone_name }}"
-        record: "{{ item.item }}.{{ zone_name }}"
+        record: "{{ item.instances.Name}}.{{ zone_name }}"
         type: A
         ttl: 1
         value: "{{ item.instances[0].private_ip_address}}"
