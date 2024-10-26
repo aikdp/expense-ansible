@@ -5,7 +5,7 @@
   become: yes
   vars:
     root_pass: ExpenseApp@1
-    zone_name: mysql.telugudevops.online
+    hosted_zone: mysql.telugudevops.online
   tasks:
     - name: Install boto3 and botocore for Python 3.9 specifically, using the 'pip3.9' executable
       ansible.builtin.pip:
@@ -24,11 +24,11 @@
         state: started
         enabled: yes
 
-    - name: Check MySQL root password 
+    - name: Check MySQL root password setup or not
       community.mysql.mysql_info:
         login_user: root
         login_password: "{{ root_pass }}"
-        login_host: "{{ zone_name }}"
+        login_host: "{{ hosted_zone }}"
       ignore_errors: true
       register: mysql_info
 
