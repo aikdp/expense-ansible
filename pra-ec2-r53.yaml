@@ -9,6 +9,12 @@
     ami_id: "ami-09c813fb71547fc4f"
     zone_name: "telugudevops.online"
   tasks:
+    - name: Install boto3 and botocore for Python 3.9 specifically, using the 'pip3.9' executable
+      ansible.builtin.pip:
+        name: 
+        - boto3
+        - botocore
+        executable: pip3.9
     - name: create ec2 instances
       amazon.aws.ec2_instance:
         name: "{{ item }}"
