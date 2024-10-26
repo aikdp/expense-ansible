@@ -7,13 +7,13 @@
     root_pass: ExpenseApp@1
     hosted_zone: mysql.telugudevops.online
   tasks:
-    - name: Install boto3 and botocore for Python 3.9 specifically, using the 'pip3.9' executable
-      ansible.builtin.pip:
-        name: 
-        - boto3
-        - botocore
-        - PyMySQL
-        executable: pip3.9
+    # - name: Install boto3 and botocore for Python 3.9 specifically, using the 'pip3.9' executable
+    #   ansible.builtin.pip:
+    #     name: 
+    #     - boto3
+    #     - botocore
+    #     - PyMySQL
+    #     executable: pip3.9
     - name: install mysql sever
       ansible.builtin.package:
         name: mysql-server
