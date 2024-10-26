@@ -47,7 +47,7 @@
 
     - name: Copy backend service file
       ansible.builtin.copy:
-        src: backend.service
+        src: /C/devops/daws-81s/repos/expense-ansible/backend.service
         dest: /etc/systemd/system/backend.service
         remote_src: yes
 
