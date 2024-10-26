@@ -26,7 +26,7 @@
         path: /app
         state: directory
        
-    - name: Download file 
+    - name: Download backend code
       ansible.builtin.get_url:
         url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
         dest: /tmp/backend.zip
@@ -35,7 +35,7 @@
       ansible.builtin.unarchive:
         src: /tmp/backend.zip
         dest: /app
-        remote_src: yes
+        remote_src: true
 
     # - name: install npm dependecies
     #   community.general.npm:
@@ -44,7 +44,7 @@
       ansible.builtin.command: npm install
       args:
         chdir: /app
-        
+
     - name: Copy backend service file
       ansible.builtin.copy:
         src: backend.service
