@@ -3,26 +3,26 @@
   hosts: backend
   become: yes
   vars:
-    mysql_toot_password: ExpenseApp@1
-    login_host: mysql.telugudevops.online
+    mysql_root_password: ExpenseApp@1
+    # login_host: mysql.telugudevops.online
   tasks:
 
-    # - name: ansible to install PyMySQL	#to connect mysql DB, need PyMySQL dependency
-    #   ansible.builtin.pip:
-    #   name: 
-    #   - PyMySQL
-    #   - cryptography
-    #   - boto3
-    #   - botocore
-    #   executable: pip3.9
+    - name: ansible to install PyMySQL	#to connect mysql DB, need PyMySQL dependency
+      ansible.builtin.pip:
+      name: 
+      - PyMySQL
+      - cryptography
+      - boto3
+      - botocore
+      executable: pip3.9
 
-    - name: diable default nodejs
+    - name: disable default nodejs
       ansible.builtin.command: dnf module disable nodejs -y
 
     - name: enable nodejs 20
       ansible.builtin.command: dnf module enable nodejs:20 -y
 
-    - name: innstall nodejs
+    - name: install nodejs
       ansible.builtin.package:
         name: "{{ item }}"
         state: present
@@ -48,17 +48,17 @@
       ansible.builtin.unarchive: 
         src: /tmp/backend.zip
         dest: /app
-        remote_src: true    #Set to true to indicate the archived file is already on the remote system and not local to the Ansible controller.
+        remote_src: yes    #Set to true to indicate the archived file is already on the remote system and not local to the Ansible controller.
 
-    - name: install npmdependencies
+    - name: install npm dependencies
       ansible.builtin.command: npm install
       args:
         chdir: /app
 
     - name: Copy backend service file
       ansible.builtin.copy:
-      src: backend.service
-      dest: /etc/systemd/system/backend.service
+        src: backend.service
+        dest: /etc/systemd/system/backend.service
 
     # - name: ansible to install PyMySQL	#to connect mysql DB, need PyMySQL dependency
     #   ansible.builtin.pip:
@@ -72,7 +72,7 @@
     - name: load or import mysql schema
       community.mysql.mysql_db:
       login_user: root
-      login_password: {{ mysql_root_password }}
+      login_password: "{{ mysql_root_password }}""
       name: all
       state: import
       target: /app/schema/backend.sql
