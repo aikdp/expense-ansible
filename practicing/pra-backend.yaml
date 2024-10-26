@@ -14,7 +14,7 @@
       ansible.builtin.command: dnf install nodejs -y
 
     - name: check user expense,if not create user
-      ansible.buitin.command: id expense
+      ansible.builtin.command: id expense
       ignore_errors: true
 
     - name: add user expense
