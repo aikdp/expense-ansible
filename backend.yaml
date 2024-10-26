@@ -1,10 +1,10 @@
 #Creating backend app configuration using ANSIBLE
-- name: Craeteing backend configuration
+- name: Creating backend configuration
   hosts: backend
   become: yes
   vars:
     mysql_root_password: ExpenseApp@1
-    # login_host: mysql.telugudevops.online
+    login_host: mysql.telugudevops.online
   tasks:
 
     - name: ansible to install PyMySQL	#to connect mysql DB, need PyMySQL dependency
@@ -72,7 +72,7 @@
     - name: load or import mysql schema
       community.mysql.mysql_db:
       login_user: root
-      login_password: "{{ mysql_root_password }}""
+      login_password: "{{ mysql_root_password }}"
       name: all
       state: import
       target: /app/schema/backend.sql
