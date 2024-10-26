@@ -1,7 +1,7 @@
 #Craeting MySQL with Ansible
 
 - name: Creating mysql configurations
-  hosts: mysql
+  hosts: db
   become: yes
   vars:
     root_pass: ExpenseApp@1
