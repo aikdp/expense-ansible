@@ -36,10 +36,10 @@
       amazon.aws.route53:
         state: present
         zone: "{{ zone_name }}"
-        record: "{{ ec2_instances.Name }}. {{ zone_name }}"
+        record: "{{ item.ec2_instances.Name }}. {{ zone_name }}"
         type: A
         ttl: 1
-        value: "{{ ec2_instances.private_ip_address}}"
+        value: "{{ item.ec2_instance.private_ip_address}}"
         wait: true
         overwrite: true
 
