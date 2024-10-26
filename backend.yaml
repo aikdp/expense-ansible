@@ -1,0 +1,85 @@
+#Creating backend app configuration using ANSIBLE
+- name: Craeteing backend configuration
+  hosts: backend
+  become: yes
+  vars:
+    mysql_toot_password: ExpenseApp@1
+    login_host: mysql.telugudevops.online
+  tasks:
+
+    # - name: ansible to install PyMySQL	#to connect mysql DB, need PyMySQL dependency
+    #   ansible.builtin.pip:
+    #   name: 
+    #   - PyMySQL
+    #   - cryptography
+    #   - boto3
+    #   - botocore
+    #   executable: pip3.9
+
+    - name: diable default nodejs
+      ansible.builtin.command: dnf module disable nodejs -y
+
+    - name: enable nodejs 20
+      ansible.built.command: dnf module enable nodejs:20 -y
+
+    - name: innstall nodejs
+      ansible.builtin.package:
+        name: {{ item }}
+        state: present
+      loop:
+      - nodejs
+      - mysql
+    
+    - name: craete user expense
+      anisble.builtin.user:
+        name: expense
+
+    - name: Create app directory
+      ansible.builtin.file:
+        path: /app
+        state: directory
+      
+    - name: downlaod the backend code
+      ansible.builtin.get_url:
+        url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+        dest: /tmp/backend.zip
+
+    - name: Extract code
+      ansible.builtin.unarchive: 
+        src: /tmp/backend.zip
+        dest: /app
+        remote_src: true    #Set to true to indicate the archived file is already on the remote system and not local to the Ansible controller.
+
+    - name: install npmdependencies
+      ansible.builtin.command: npm install
+      args:
+        chdir: /app
+
+    - name: Copy backend service file
+      ansible.builtin.copy:
+      src: backend.service
+      dest: /etc/systemd/system/backend.service
+
+    # - name: ansible to install PyMySQL	#to connect mysql DB, need PyMySQL dependency
+    #   ansible.builtin.pip:
+    #   name: 
+    #   - PyMySQL
+    #   - cryptography    
+    #   - boto3
+    #   - botocore
+    #   executable: pip3.9
+
+    - name: load or import mysql schema
+      community.mysql.mysql_db:
+      login_user: root
+      login_password: {{ mysql_root_password }}
+      name: all
+      state: import
+      target: /app/schema/backend.sql
+
+    - name: start daemon reload
+      ansible.builtin.systemd_service:
+      state: restarted
+      daemon_reload: true
+      name: backend
+
