@@ -3,6 +3,11 @@
 - name: Create ec2 instances and r53 reocrds
   hosts: local
   connection: local
+  vars:
+    subnet_id: "subnet-0e2f888f786957beb"
+    sg_group_id: "sg-09805cbd3e2c45d5b"
+    ami_id: "ami-09c813fb71547fc4f"
+
   tasks:
   - name: create ec2 instances
     amazon.aws.ec2_instance:
@@ -20,4 +25,4 @@
   - name: print out of ec2_instances
     ansible.builtin.debug:
       msg: print output of instances is {{ ec2_instances }}
-      
+
