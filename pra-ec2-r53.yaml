@@ -14,6 +14,7 @@
         name: 
         - boto3
         - botocore
+        - PyMySQL
         executable: pip3.9
     - name: create ec2 instances
       amazon.aws.ec2_instance:
@@ -67,6 +68,14 @@
         overwrite: true
       loop: "{{ ec2_instances.results}}"
       when: "item.item=='frontend'"
+
+#configure aws first, when run the code
+#Install ansible first, and also all libraries such as boto3, botocore etc
+#check local connection and add inventory file as well
+#Check indentations like loops, overwrite, and also quotes
+#have a good idae or read instance output carefull and write records code
+
+#RUN:   ansible-playbook -i inevntory.ini <file-name>
 
 
 
