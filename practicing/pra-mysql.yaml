@@ -39,3 +39,6 @@
       ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ root_pass }}"
       when: mysql_info.failed is true
       
+
+# check in mysql server:
+  # mysql -h mysql.telugudevops.online -u root -pExpenseApp@1
