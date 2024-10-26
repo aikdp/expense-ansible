@@ -1,12 +1,19 @@
 #Craeting MySQL with Ansible
 
-- name: Creating MySQL 
+- name: Creating mysql configurations
   hosts: mysql
   become: yes
   vars:
     root_pass: ExpenseApp@1
     zone_name: mysql.telugudevops.online
   tasks:
+    - name: Install boto3 and botocore for Python 3.9 specifically, using the 'pip3.9' executable
+      ansible.builtin.pip:
+        name: 
+        - boto3
+        - botocore
+        - PyMySQL
+        executable: pip3.9
     - name: install mysql sever
       ansible.builtin.package:
         name: mysql-server
@@ -22,13 +29,12 @@
         login_user: root
         login_password: "{{ root_pass }}"
         login_host: "{{ zone_name }}"
-        ignore_errors: true
+      ignore_errors: true
       register: mysql_info
 
-    - name: print mysql_info
+    - name: print mysql info
       ansible.builtin.debug:
         msg: "{{ mysql_info }}"
-
 
     - name: set root pasword to MySQL 
       ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ root_pass }}"
