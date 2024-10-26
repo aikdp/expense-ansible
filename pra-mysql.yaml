@@ -1,17 +1,17 @@
 #Craeting MySQL with Ansible
 
-- name: Creafing mysql server
+- name: Creating MySQL 
   hosts: mysql
   become: yes
   vars:
-    root_pass: ExpenseApp@1
+    root_pass: "ExpenseApp@1"
     zone_name: "mysql.telugudevops.online"
   tasks:
     - name: install mysql sever
       ansible.builtin.package:
         name: mysql-server
         state: present
-    - name: Enable service httpd, and not touch the state
+    - name: Enable and start service mysqld
       ansible.builtin.service:
         name: mysqld
         state: started
