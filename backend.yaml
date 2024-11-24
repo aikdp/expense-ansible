@@ -61,12 +61,12 @@
 
     - name: ansible to install PyMySQL	#to connect mysql DB, need PyMySQL dependency
       ansible.builtin.pip:
-      name: 
-      - PyMySQL
-      - cryptography    
-      - boto3
-      - botocore
-      executable: pip3.9
+        name: 
+        - PyMySQL
+        - cryptography    
+        - boto3
+        - botocore
+        executable: pip3.9
 
     - name: load or import mysql schema
       community.mysql.mysql_db:
