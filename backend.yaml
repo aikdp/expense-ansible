@@ -104,6 +104,15 @@
     root_pass: "ExpenseApp@1"
     hosted_zone: "mysql.telugudevops.online"
   tasks:
+    - name: ansible to install PyMySQL	#to connect mysql DB, need PyMySQL dependency
+      ansible.builtin.pip:
+        name: 
+        - PyMySQL
+        - cryptography    
+        - boto3
+        - botocore
+        executable: pip3.9
+        
     - name: Install nodejs package
       ansible.builtin.command: dnf module disable nodejs -y
 

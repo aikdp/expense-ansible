@@ -2,8 +2,6 @@
 - name: frontend configuration
   hosts: frontend
   become: yes
-  vars:
-
   tasks:
   - name: install nginx
     ansible.builtin.package: 
