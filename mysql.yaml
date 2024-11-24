@@ -1,6 +1,4 @@
 #Create mysql server using ansible
-
-
 - name: Create mysql server
   hosts: mysql
   become: yes
