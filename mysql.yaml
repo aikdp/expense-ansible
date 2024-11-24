@@ -7,6 +7,14 @@
     mysql_root_password: "ExpenseApp@1"
     mysql_hosted_zone: "mysql.telugudevops.online"
   tasks:
+    - name: ansible to install PyMySQL	#to connect mysql DB, need PyMySQL dependency
+      ansible.builtin.pip:
+        name: 
+        - PyMySQL
+        - cryptography    
+        - boto3
+        - botocore
+        executable: pip3.9
       #installing mysql-server
     - name: install mysql-server
       ansible.builtin.package:
