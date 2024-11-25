@@ -15,7 +15,7 @@
         - cryptography    
         - boto3
         - botocore
-        executable: pip3.9.18
+        executable: pip3.9
     - name: Install nodejs package
       ansible.builtin.command: dnf module disable nodejs -y
 
