@@ -11,11 +11,11 @@
       ansible.builtin.pip:
         name: 
         - PyMySQL
-        - MySQL-python
+        # - MySQL-python
         - cryptography    
         - boto3
         - botocore
-        executable: pip3.9
+        executable: pip-3.9
     - name: Install nodejs package
       ansible.builtin.command: dnf module disable nodejs -y
 
